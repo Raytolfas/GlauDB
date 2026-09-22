@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  glaudb:
+    build: .
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      GLAUDB_ADMIN_PASSWORD: ${GLAUDB_ADMIN_PASSWORD:?Set a strong GLAUDB_ADMIN_PASSWORD in your environment}
+    command: ["/app/glaudb", "serve", "--db", "/app/data/glaudb.db", "--uploads", "/app/data/uploads", "--backups", "/app/data/backups"]
+    volumes:
+      - glaudb_data:/app/data
+    restart: always
+
+volumes:
+  glaudb_data:

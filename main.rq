@@ -1,0 +1,36 @@
+import "glaudb" as glaudb;
+
+async fn main() {
+    glaudb.connect("127.0.0.1:8081", "OGOnq1NIFIGASEBEogogo");
+
+    glaudb.create_collection("users", "[
+      {\"name\":\"email\",\"type\":\"text\",\"required\":true,\"unique\":true,\"indexed\":true},
+      {\"name\":\"name\",\"type\":\"text\",\"required\":true},
+      {\"name\":\"role\",\"type\":\"text\",\"required\":false},
+      {\"name\":\"age\",\"type\":\"number\",\"required\":false}
+    ]");
+
+    var u1 = glaudb.insert("users", "{\"email\":\"alex@dev.io\",\"name\":\"Alex\",\"role\":\"admin\",\"age\":28}");
+    var u2 = glaudb.insert("users", "{\"email\":\"bob@dev.io\",\"name\":\"Bob\",\"role\":\"user\",\"age\":22}");
+
+    var user = glaudb.find_by("users", "email", "\"alex@dev.io\"");
+    print("Found: " + user?.["name"]);
+
+    glaudb.upsert("users", "email", "{\"email\":\"carol@dev.io\",\"name\":\"Carol\",\"role\":\"user\",\"age\":31}");
+
+    var qb = glaudb.new_query("users");
+    qb = glaudb.qb_eq(qb, "role", "\"admin\"");
+    qb = glaudb.qb_gt(qb, "age", "20");
+    qb = glaudb.qb_sort(qb, "name", false);
+    qb = glaudb.qb_limit(qb, 10);
+    var admins = glaudb.qb_run(qb);
+    print("Admins: " + str(len(admins)));
+
+    var total = glaudb.qb_count(glaudb.new_query("users"));
+    print("Total users: " + str(total));
+
+    var results = glaudb.search("users", "alex", "[\"name\",\"email\"]", 5);
+    print("Search: " + str(len(results)));
+}
+
+main();
