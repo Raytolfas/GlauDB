@@ -91,4 +91,4 @@ main();
 
 ## License
 
-MIT
+[Apache License 2.0](https://github.com/Raytolfas/GlauDB/blob/main/LICENSE)
