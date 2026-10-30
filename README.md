@@ -8,7 +8,7 @@ High-performance, embedded document database engine with an integrated Web Admin
 - **Storage Engine**: Transactional ACID key-value storage powered by [redb](https://github.com/cberner/redb).
 - **Pro Query Engine**: Filtering (`eq`, `gt`, `gte`, `lt`, `lte`, `contains`, `in`, `nin`, `startswith`, `endswith`, `exists`), multiple sorting, offset/limit pagination, aggregation pipelines, and trigram-based full-text search.
 - **Embedded Web Admin UI**: Responsive dark/light dashboard with real-time metrics, collection visualizer, document CRUD, API token management, webhooks, and live server log stream.
-- **RayQuiro SDK**: Dedicated driver library in `glaudb-rqio/` for seamless integration with the [RayQuiro](https://rayquiro.raytolfas.com) language.
+- **RayQuiro SDK**: Dedicated driver library in [`RayQuiro/GlauDB`](https://github.com/RayQuiro/GlauDB) for seamless integration with the [RayQuiro](https://rayquiro.raytolfas.com) language.
 
 ---
 
@@ -72,7 +72,7 @@ docker compose up --build -d
 
 ## RayQuiro Language Integration
 
-Check the [glaudb-rqio](glaudb-rqio/) directory:
+Check the [RayQuiro/GlauDB](https://github.com/RayQuiro/GlauDB) repository:
 
 ```rq
 import "glaudb";
@@ -91,4 +91,4 @@ main();
 
 ## License
 
-MIT
+[Apache License 2.0](https://github.com/Raytolfas/GlauDB/blob/main/LICENSE)
