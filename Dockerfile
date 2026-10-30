@@ -5,7 +5,7 @@ RUN npm install
 COPY glaudb-admin ./
 RUN npm run build
 
-FROM rust:1.80-slim-bookworm AS builder
+FROM rust:slim-bookworm AS builder
 WORKDIR /app
 RUN apt-get update && apt-get install -y pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
 COPY Cargo.toml Cargo.lock ./
@@ -15,7 +15,7 @@ RUN cargo build --release
 
 FROM debian:bookworm-slim
 WORKDIR /app
-RUN apt-get update && apt-get install -y ca-certificates openssl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y ca-certificates openssl libssl3 && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /app/data/uploads /app/data/backups
 COPY --from=builder /app/target/release/glaudb /app/glaudb
 EXPOSE 8080

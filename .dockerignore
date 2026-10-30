@@ -1,0 +1,8 @@
+target
+node_modules
+glaudb-admin/node_modules
+glaudb-admin/dist
+*.db
+.git
+.github
+*.exe
